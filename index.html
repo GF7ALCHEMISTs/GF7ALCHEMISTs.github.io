@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sampai Junmpa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: midnightblue;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .background-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    button {
+      font-size: 1.2em;
+      background-color: cornflowerblue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      width: 150px;
+      opacity: 0.6;
+    }
+
+    button:hover {
+      background-color: royalblue;
+      opacity: 1;
+    }
+
+    .thanks {
+      font-size: 2em;
+      margin-top: 50px;
+    }
+
+    .thanks-slide, .lucky-slide, .confession-slide, .initial-slide, .question-slide , .lucky-slide2 {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <video class="background-video" src="Video.mp4" autoplay muted loop></video>
+
+  <div class="content">
+    <div class="initial-slide">
+      <h1>Hi</h1>
+      <p>
+        Aku ada pesen buat kamu nih
+      </p>
+      <button id="nextSlideBtn1">Next Slide</button>
+    </div>
+
+    <div class="confession-slide">
+      <h1>Kamu tau gak</h1>
+      <p>
+        aku gak pernah nyesel ketemu sama kamu sampai aku jatuh cinta sedalam ini sama kamu
+      </p>
+      <p>
+        soalnya kamu memang pantes buat aku perjuangin..
+      </p>
+      <button id="nextSlideBtn2">Next Slide</button>
+    </div>
+
+    <div class="lucky-slide">
+      <h1>Very lucky to have u</h1>
+      <p>
+        betapa beruntungnya aku semenjak kenal sama kamu
+      </p>
+      <button id="nextSlideBtn3">Next Slide</button>
+    </div>
+
+    <div class="lucky-slide2">
+      <h1>Terakhir</h1>
+      <p>
+        Terimakasih
+      </p>
+      <p>
+        Karena kamu aku jadi pengen ke sekolah setiap hari
+      </p>
+      <button id="nextSlideBtn4">Next Slide</button>
+    </div>
+
+    <div class="question-slide">
+      <p>
+        W pergi dulu ya dadah el
+      </p>
+
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div class="thanks-slide">
+      <h1 class="thanks">Dadah</h1>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.initial-slide').style.display = 'flex';
+
+    document.getElementById("nextSlideBtn1").addEventListener("click", function () {
+      document.querySelector('.initial-slide').style.display = 'none';
+      document.querySelector('.confession-slide').style.display = 'flex';
+    });
+
+    document.getElementById("nextSlideBtn2").addEventListener("click", function () {
+      document.querySelector('.confession-slide').style.display = 'none';
+      document.querySelector('.lucky-slide').style.display = 'flex';
+    });
+
+    document.getElementById("nextSlideBtn3").addEventListener("click", function () {
+      document.querySelector('.lucky-slide').style.display = 'none';
+      document.querySelector('.lucky-slide2').style.display = 'flex';
+    });
+
+    document.getElementById("nextSlideBtn4").addEventListener("click", function () {
+      document.querySelector('.lucky-slide2').style.display = 'none';
+      document.querySelector('.question-slide').style.display = 'flex';
+    });
+
+    document.getElementById("yesBtn").addEventListener("click", function () {
+      document.querySelector('.question-slide').style.display = 'none';
+      document.querySelector('.thanks-slide').style.display = 'flex';
+    });
+
+    document.getElementById("noBtn").addEventListener("click", function () {
+      document.querySelector('.question-slide').style.display = 'none';
+      document.querySelector('.thanks-slide').style.display = 'flex';
+    });
+  </script>
+</body>
+</html>
+
