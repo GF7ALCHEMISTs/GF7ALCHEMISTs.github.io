@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sampai Jumpa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: midnightblue;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .background-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    button {
+      font-size: 1.2em;
+      background-color: cornflowerblue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      width: 150px;
+      opacity: 0.6;
+    }
+
+    button:hover {
+      background-color: royalblue;
+      opacity: 1;
+    }
+
+    .thanks {
+      font-size: 2em;
+      margin-top: 50px;
+    }
+
+    .thanks-slide, .lucky-slide, .confession-slide, .initial-slide, .question-slide , .lucky-slide2 {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: transform 1s;
+    }
+
+    .active-slide {
+      display: flex;
+    }
+
+    .slide-animation {
+      transform: translateX(-100%);
+    }
+
+    .typed-text {
+      white-space: nowrap;
+      overflow: hidden;
+      margin: 0 auto;
+      border-right: .15em solid orange;
+      animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: orange; }
+    }
+
+  </style>
+</head>
+<body>
+  <audio id="background-music" src="Song.mp3" preload="auto" loop></audio>
+  <video class="background-video" src="Video.mp4" autoplay muted loop></video>
+
+  <div class="content">
+    <div class="initial-slide active-slide">
+      <h1>Hi Elvina</h1>
+      <p class="typed-text">
+        Aku ada pesen buat kamu nih
+      </p>
+      <button id="nextSlideBtn1">Next Slide</button>
+    </div>
+    <div class="confession-slide">
+      <h1>Kamu tau gak</h1>
+      <p class="typed-text">
+        aku gak pernah nyesel ketemu sama kamu
+      </p>
+      <p class="typed-text">
+        sampai aku jatuh cinta sedalam ini sama kamu
+      </p>
+      <p class="typed-text">
+        maaf ya kalau aku kadang kadang buat salah sama kamu
+      </p>
+      <p class="typed-text">
+        soalnya kamu memang pantes buat aku perjuangin..
+      </p>
+      <p class="typed-text">
+        aku gak mau kehilangan kamu..
+      </p>
+      <button id="nextSlideBtn2">Next Slide</button>
+    </div>
+
+    <div class="lucky-slide">
+      <h1>i am Very lucky to have u</h1>
+      <p class="typed-text">
+        betapa beruntungnya aku semenjak kenal sama kamu
+      </p>
+      <p class="typed-text">
+        terimkasih ya jadi penyemangat aku
+      </p>
+      <button id="nextSlideBtn3">Next Slide</button>
+    </div>
+    <div class="lucky-slide2">
+      <h1>Last</h1>
+      <p class="typed-text">
+        Thank you
+      </p>
+      <p class="typed-text">
+        Karena kamu aku jadi pengen ke sekolah setiap hari
+      </p>
+      <button id="nextSlideBtn4">Next Slide</button>
+    </div>
+
+    <div class="question-slide">
+      <p class="typed-text">
+        W pergi dulu ya dadah el
+      </p>
+      <button id="slideBtn">Next Slide</button>
+    </div>
+
+    <div class="thanks-slide">
+      <h1 class="thanks">Dadah</h1>
+    </div>
+
+    <script>
+      function playMusic() {
+        var music = document.getElementById("background-music");
+        music.volume = 0.1;
+        music.muted = false;
+        music.play();
+      }
+
+      function stopMusic() {
+        var music = document.getElementById("background-music");
+        music.pause();
+        music.currentTime = 0;
+      }
+
+      function nextSlide(fromSlide, toSlide) {
+        document.querySelector(fromSlide).classList.remove("active-slide");
+        document.querySelector(fromSlide).classList.add("slide-animation");
+        setTimeout(function () {
+          document.querySelector(fromSlide).style.display = 'none';
+          document.querySelector(toSlide).style.display = 'flex';
+          document.querySelector(toSlide).classList.add("active-slide");
+        }, 1000);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var content = document.querySelector('.content');
+        content.addEventListener("click", function() {
+          playMusic();
+        });
+
+        document.getElementById("nextSlideBtn1").addEventListener("click", function () {
+          playMusic();
+          nextSlide('.initial-slide', '.confession-slide');
+        });
+
+        document.getElementById("nextSlideBtn2").addEventListener("click", function () {
+          nextSlide('.confession-slide', '.lucky-slide');
+        });
+
+        document.getElementById("nextSlideBtn3").addEventListener("click", function () {
+          nextSlide('.lucky-slide', '.lucky-slide2');
+        });
+
+        document.getElementById("nextSlideBtn4").addEventListener("click", function () {
+          nextSlide('.lucky-slide2', '.question-slide');
+        });
+        document.getElementById("slideBtn").addEventListener("click", function () {
+          nextSlide('.question-slide', '.thanks-slide');
+        });
+      });
+    </script>
+  </div>
+</body>
+</html>
